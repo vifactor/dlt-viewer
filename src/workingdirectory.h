@@ -1,7 +1,6 @@
 #ifndef WORKINGDIRERCTORY_H
 #define WORKINGDIRERCTORY_H
 
-#include <QObject>
 #include <QString>
 
 /*!
@@ -11,9 +10,8 @@
 * QDltSettingsManager.
 *\sa QDltSettingsManager
 */
-class WorkingDirectory : public QObject
+class WorkingDirectory
 {
-    Q_OBJECT
 public:
     enum WorkingDirectoryType {
         LogFile,
@@ -25,15 +23,6 @@ public:
 
 public:
     WorkingDirectory();
-    /*!
-     * \brief getDirectory
-     * Get working directory for specific type of operation.
-     * \param type Type of operation defined in WorkingDirectoryType
-     * \param extra Optional parameter. Used for getting settings for a plugin
-     * \return Current working directory for the operation
-     * \sa WorkingDirectoryType
-     */
-    QString getDirectory(WorkingDirectoryType type, QString extra = QString());
 
     //! Get working directory for DLT files
     QString getDltDirectory();
@@ -45,15 +34,6 @@ public:
     QString getExportDirectory();
     //! Get working directory for plugin configuration
     QString getPluginDirectory(QString pluginName);
-
-    /*!
-     * \brief setDirectory
-     * Set directory for specific type of operation.
-     * \param type The type defined by WorkingDirectoryType.
-     * \param extra Possible plugin name.
-     * \sa WorkingDirectoryType
-     */
-    void setDirectory(WorkingDirectoryType type, QString dir, QString extra = QString());
 
     //! Set working directory for DLT files
     void setDltDirectory(QString dir);
@@ -69,6 +49,26 @@ public:
     // Helpers
 private:
     QString createKeyFor(WorkingDirectoryType type, QString extra);
+    /*!
+     * \brief getDirectory
+     * Get working directory for specific type of operation.
+     * \param type Type of operation defined in WorkingDirectoryType
+     * \param extra Optional parameter. Used for getting settings for a plugin
+     * \return Current working directory for the operation
+     * \sa WorkingDirectoryType
+     */
+    QString getDirectory(WorkingDirectoryType type, QString extra = QString());
+
+    /*!
+     * \brief setDirectory
+     * Set directory for specific type of operation.
+     * \param type The type defined by WorkingDirectoryType.
+     * \param extra Possible plugin name.
+     * \sa WorkingDirectoryType
+     */
+    void setDirectory(WorkingDirectoryType type, QString dir, QString extra = QString());
+
+
 };
 
 #endif // WORKINGDIRERCTORY_H

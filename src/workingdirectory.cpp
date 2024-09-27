@@ -42,22 +42,15 @@ QString WorkingDirectory::getDirectory(WorkingDirectoryType type, QString extra)
      * Linux   -- Home Directory
      * Mac     -- ???
      **/
-    QString ret = "";
-    QString key = createKeyFor(type, extra);
 
     if (!QDltOptManager::getInstance()->getWorkingDirectory().isEmpty())
     {
-        ret = QDltOptManager::getInstance()->getWorkingDirectory();
+        return QDltOptManager::getInstance()->getWorkingDirectory();
     }
-    else if(type == WorkingDirectory::PluginConfig)
-    {
-        ret = QDltSettingsManager::getInstance()->value(key, "plugins/").toString();
-    }
-    else
-    {
-        ret = QDltSettingsManager::getInstance()->value(key, "./").toString();
-    }
-    return ret;
+
+    QString key = createKeyFor(type, extra);
+    QString defaultValue = (type == WorkingDirectory::PluginConfig) ? "plugins/" : "./";
+    return QDltSettingsManager::getInstance()->value(key, defaultValue).toString();
 }
 
 // The meat of setters

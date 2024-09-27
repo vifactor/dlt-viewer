@@ -36,8 +36,6 @@ public:
     explicit PluginDialog(QWidget *parent = 0);
     ~PluginDialog();
 
-    WorkingDirectory workingDirectory;
-
     void setName(QString name);
     void setPluginVersion(QString version);
     void setPluginInterfaceVersion(QString version);
@@ -52,6 +50,8 @@ public:
 
 private:
     Ui::PluginDialog *ui;
+
+    WorkingDirectory workingDirectory;
 
 private slots:
     void on_toolButton_clicked();
