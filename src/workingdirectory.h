@@ -22,7 +22,7 @@ public:
     };
 
 public:
-    WorkingDirectory();
+    explicit WorkingDirectory(const QString& path);
 
     //! Get working directory for DLT files
     QString getDltDirectory();
@@ -46,9 +46,9 @@ public:
     //! Set working directory for plugin configuration
     void setPluginDirectory(QString pluginName, QString dir);
 
-    // Helpers
 private:
     QString createKeyFor(WorkingDirectoryType type, QString extra);
+
     /*!
      * \brief getDirectory
      * Get working directory for specific type of operation.
@@ -68,7 +68,7 @@ private:
      */
     void setDirectory(WorkingDirectoryType type, QString dir, QString extra = QString());
 
-
+    const QString m_workDirPath;
 };
 
 #endif // WORKINGDIRERCTORY_H

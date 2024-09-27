@@ -33,7 +33,7 @@ class PluginDialog : public QDialog
 
 public:
 
-    explicit PluginDialog(QWidget *parent = 0);
+    PluginDialog(const QString& workingDir, QWidget *parent = nullptr);
     ~PluginDialog();
 
     void setName(QString name);

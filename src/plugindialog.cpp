@@ -22,9 +22,10 @@
 #include "plugindialog.h"
 #include "ui_plugindialog.h"
 
-PluginDialog::PluginDialog(QWidget *parent) :
+PluginDialog::PluginDialog(const QString& wd, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::PluginDialog) {
+    ui(new Ui::PluginDialog),
+    workingDirectory(wd) {
     ui->setupUi(this);
 }
 

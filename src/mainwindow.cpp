@@ -95,6 +95,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     timer(this),
     qcontrol(this),
+    workingDirectory(QDltOptManager::getInstance()->getWorkingDirectory()),
     pulseButtonColor(255, 40, 40),
     isSearchOngoing(false)
 {
@@ -6521,7 +6522,7 @@ void MainWindow::on_action_menuPlugin_Edit_triggered() {
         PluginItem* item = (PluginItem*) treeitem;
 
         /* show plugin dialog */
-        PluginDialog dlg;
+        PluginDialog dlg(QDltOptManager::getInstance()->getWorkingDirectory());
         dlg.setName(item->getName());
         dlg.setPluginVersion(item->getPluginVersion());
         dlg.setPluginInterfaceVersion(item->getPluginInterfaceVersion());

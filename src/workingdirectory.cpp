@@ -1,11 +1,12 @@
 #include "workingdirectory.h"
 
 #include "qdltsettingsmanager.h"
-#include "qdltoptmanager.h"
 
 // See workingdirectory.h for documentation.
 
-WorkingDirectory::WorkingDirectory() { }
+WorkingDirectory::WorkingDirectory(const QString &path) : m_workDirPath(path)
+{
+}
 
 QString WorkingDirectory::createKeyFor(WorkingDirectoryType type, QString extra)
 {
@@ -43,9 +44,9 @@ QString WorkingDirectory::getDirectory(WorkingDirectoryType type, QString extra)
      * Mac     -- ???
      **/
 
-    if (!QDltOptManager::getInstance()->getWorkingDirectory().isEmpty())
+    if (!m_workDirPath.isEmpty())
     {
-        return QDltOptManager::getInstance()->getWorkingDirectory();
+        return m_workDirPath;
     }
 
     QString key = createKeyFor(type, extra);
